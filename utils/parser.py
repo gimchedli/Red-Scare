@@ -26,22 +26,34 @@ def parse_input(input: list[str]):
     n,m,r = [int(x) for x in input[0].split()]
     s,t = input[1].split()
     
-    
-    vertices = input[2:n+2]
-    R = {v[:-2] for v in vertices if ' *' in v}
+    vertices = [v.split()[0] for v in input[2:n+2]]
+
+    R = {v[:-2] for v in input[2:n+2] if ' *' in v}
+
     edges = []
     adj = {}
 
+    directed = m > 0 and '->' in input[n+2]
+    
     for edge in input[n+2 : n+m+2]:
-        if '>' in edge:
-            #digraph
+        if directed:
             u,v = edge.split(' -> ')
         else:
-            #undirected
+            #undirected; add both directions
             u,v = edge.split(' -- ')
             adj.setdefault(v, []).append(u)
 
         edges.append((u,v))
         adj.setdefault(u, []).append(v)
 
-    return (n,m,r,s,t, vertices, edges, adj, R)
+    assert(len(R) == r)
+
+    return {
+        'n': n, 'm': m, 'r': r,
+        's': s, 't': t,
+        'vertices': vertices,
+        'R': R,
+        'directed': directed,
+        'edges': edges,
+        'adj': adj,
+    }

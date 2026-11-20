@@ -17,7 +17,8 @@ def solve_few(input):
     Dijkstras would also work, but 0-1 BFS is optimal for 0 or 1 weights
     https://cp-algorithms.com/graph/01_bfs.html
     '''
-    _,_,_,s,t,_,_, adj, R = parse_input(input)
+    parsed = parse_input(input)
+    s,t,adj, R = parsed['s'], parsed['t'], parsed['adj'], parsed['R']
 
     # deque instead of 2 queues, normal vertices get pushed to the left,
     # red ones to the right; we always pop from left
