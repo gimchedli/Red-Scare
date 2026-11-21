@@ -1,8 +1,8 @@
 '''
 Runs all five solvers on every instance in data/ and writes results.txt.
 
-Usage (from the repository root):
-    python3 -m utils.run_all
+Usage:
+    python3 run_all.py
 
 Output: a tab-separated table, one row per instance, sorted naturally
 (common-1-20 before common-1-100), with the columns
@@ -15,10 +15,12 @@ import os
 import sys
 import time
 
-# make this work no matter where it is run from (repo root or inside utils/):
-# put the repo root on the import path and use it as the working directory,
-# so `utils.*`, the solver files and data/ are all found
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# make this work no matter which folder it is run from:
+# put the repo root (the folder this file is in) on the import path and use it
+# as the working directory, so `utils.*`, the solver files and data/ are all found
+# OLD (when this file lived in utils/, the root was one folder up):
+# ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
