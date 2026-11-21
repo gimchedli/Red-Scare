@@ -15,15 +15,6 @@ import os
 import sys
 import time
 
-# make this work no matter which folder it is run from:
-# put the repo root (the folder this file is in) on the import path and use it
-# as the working directory, so `utils.*`, the solver files and data/ are all found
-# OLD (when this file lived in utils/, the root was one folder up):
-# ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, ROOT)
-os.chdir(ROOT)
-
 from utils.test_runner_new import natural_key
 
 from alternate import solve_alternate
