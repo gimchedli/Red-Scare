@@ -26,21 +26,37 @@ def parse_input(input: list[str]):
     n,m,r = [int(x) for x in input[0].split()]
     s,t = input[1].split()
     
-    vertices = [v.split()[0] for v in input[2:n+2]]
+    # OLD: broke on files with stray/trailing whitespace (e.g. bht.txt, where
+    # red lines look like "guilt  *" and edges like "woody -- wooly "):
+    # R got names like "guilt " and edges got endpoints like "wooly ".
+    # vertices = [v.split()[0] for v in input[2:n+2]]
+    #
+    # R = {v[:-2] for v in input[2:n+2] if ' *' in v}
 
-    R = {v[:-2] for v in input[2:n+2] if ' *' in v}
+    # NEW: split() on any whitespace so stray spaces never end up in names
+    vertex_lines = [line.split() for line in input[2:n+2]]
+    vertices = [parts[0] for parts in vertex_lines]
+
+    R = {parts[0] for parts in vertex_lines if len(parts) > 1 and parts[1] == '*'}
 
     edges = []
     adj = {}
 
     directed = m > 0 and '->' in input[n+2]
-    
+
     for edge in input[n+2 : n+m+2]:
-        if directed:
-            u,v = edge.split(' -> ')
-        else:
+        # OLD:
+        # if directed:
+        #     u,v = edge.split(' -> ')
+        # else:
+        #     #undirected; add both directions
+        #     u,v = edge.split(' -- ')
+        #     adj.setdefault(v, []).append(u)
+
+        # NEW:
+        u, arrow, v = edge.split()
+        if not directed:
             #undirected; add both directions
-            u,v = edge.split(' -- ')
             adj.setdefault(v, []).append(u)
 
         edges.append((u,v))
