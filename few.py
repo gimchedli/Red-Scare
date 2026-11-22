@@ -39,4 +39,5 @@ def solve_few(input):
                     q.append(v)
     return dist.get(t,-1)
 
-run_tests(solve_few)
+if __name__ == '__main__':
+    run_tests(solve_few)
