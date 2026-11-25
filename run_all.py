@@ -29,9 +29,9 @@ OUTPUT_FILE = 'results.txt'
 SOLVERS = [
     ('A', solve_alternate),
     ('F', solve_few),
-    #('M', solve_many),
+    ('M', solve_many),
     ('N', solve_none),
-    #('S', solve_some),
+    ('S', solve_some),
 ]
 
 
