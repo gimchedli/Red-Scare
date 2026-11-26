@@ -6,7 +6,6 @@ edge vi vi+1 is red. Otherwise, return ‘false.’ In Gex, the answer is
 ‘yes’ (because of the path 0, 5, 6, 7, 3.)
 """
 
-import sys
 from collections import deque
 from utils.parser import parse_input
 from utils.test_runner_new import run_tests
