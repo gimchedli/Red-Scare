@@ -1,5 +1,9 @@
 # Red-Scare
 
+The python files 'few.py, 'alternate.py', 'many.py', 'none.py', 'some.py' contain the respective implementations for the exercise.
+
+To reproduce 'results.txt', run 'python3 run_all.py'
+
 ## Utils
 
 The utils/ directory contains utility functions that can be reused for all tasks.
