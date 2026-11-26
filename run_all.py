@@ -12,10 +12,9 @@ problem is NP-hard for that graph, or 'ERROR' if the solver crashed.
 '''
 
 import os
+import re
 import sys
 import time
-
-from utils.test_runner_new import natural_key
 
 from alternate import solve_alternate
 from few import solve_few
@@ -34,6 +33,9 @@ SOLVERS = [
     ('S', solve_some),
 ]
 
+def natural_key(name: str):
+    # "common-1-20.txt" -> ['common-', 1, '-', 20, '.txt']
+    return [int(part) if part.isdigit() else part.lower() for part in re.split(r'(\d+)', name)]
 
 def run_all():
     files = sorted(
